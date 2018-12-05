@@ -1,8 +1,9 @@
 .results {
   width: 600px;
   margin: auto;
-  /* border-bottom: 1px solid black; */
+  border-radius: 5px;
   text-align: center;
-  background: green;
+  background: blanchedalmond;
+  padding: 10px;
 
 }

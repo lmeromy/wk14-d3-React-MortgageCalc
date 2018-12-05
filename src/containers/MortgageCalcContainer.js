@@ -9,7 +9,9 @@ class MortgageCalcContainer extends React.Component {
     super(props)
     this.state = {
       name: '',
-      maxPropValue: ''
+      maxPropValue: '',
+      rate: '',
+      term: ''
     };
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -21,7 +23,7 @@ class MortgageCalcContainer extends React.Component {
 
   handleFormSubmit(submittedData){
     const calculatedMortgage = submittedData.deposit + submittedData.annualSalary * 3;
-    this.setState({name: submittedData.name, maxPropValue: calculatedMortgage});
+    this.setState({name: submittedData.name, maxPropValue: calculatedMortgage, rate: submittedData.rate, term: submittedData.term});
 
   }
 
@@ -31,8 +33,13 @@ class MortgageCalcContainer extends React.Component {
       <div className="mortgage-container">
         <Header/>
         {/* <NumberOfPeople/> */}
-        <MortgageForm onFormSubmit={this.handleFormSubmit}/>
-        <MyMortgage name={this.state.name} mortgage={this.state.maxPropValue}/>
+        <div className="mortgage-content">
+          <MortgageForm onFormSubmit={this.handleFormSubmit}/>
+          <MyMortgage  mortgage={this.state.maxPropValue}
+                       name={this.state.name}
+                       rate={this.state.rate}
+                       term={this.state.term}/>
+        </div>
       </div>
 
       </>

@@ -8,17 +8,17 @@ class MortgageForm extends React.Component {
     this.state = {
       name: '',
       annualSalary: '',
-      deposit: ''
+      deposit: '',
+      rate: '',
+      term: ''
       // NOT YET ADDED OPTION FOR 2 PEOPLE
-      // partnerName: '',
-      // partnerSalary: null,
-      // combinedSalary: null,
-      // maxPropValue: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameEntry = this.handleNameEntry.bind(this);
     this.handleSalaryEntry = this.handleSalaryEntry.bind(this);
     this.handleDepositEntry = this.handleDepositEntry.bind(this);
+    this.handleRateEntry = this.handleRateEntry.bind(this);
+    this.handleTermEntry = this.handleTermEntry.bind(this);
   }
 
   handleNameEntry(event){
@@ -33,16 +33,27 @@ class MortgageForm extends React.Component {
     this.setState({deposit: parseInt(event.target.value)});
   }
 
+  handleRateEntry(event){
+    this.setState({rate: parseInt(event.target.value)});
+  }
+
+  handleTermEntry(event){
+    this.setState({term: parseInt(event.target.value)});
+  }
+
   handleSubmit(event){
     event.preventDefault();
     const name = this.state.name.trim();
     const salary = this.state.annualSalary;
     const deposit = this.state.deposit;
-    if(!name || !salary || !deposit) return; // breaks out if field is empty
-    this.props.onFormSubmit({name: name, annualSalary: salary, deposit: deposit});
+    const rate = this.state.rate;
+    const term = this.state.term;
+
+    if(!name || !salary || !deposit || !rate || !term) return; // breaks out if field is empty
+    this.props.onFormSubmit({name: name, annualSalary: salary, deposit: deposit, rate: rate, term: term});
 
     // clear the form for the next time:
-    this.setState({name: '', annualSalary: '', deposit: ''});
+    this.setState({name: '', annualSalary: '', deposit: '', rate: '', term: ''});
   }
 
   render(){
@@ -68,6 +79,20 @@ class MortgageForm extends React.Component {
                placeholder='Enter your deposit'
                value={this.state.deposit}
                onChange={this.handleDepositEntry}/>
+        </label>
+        <label>
+          Mortgage Interest Rate (Annual %):
+        <input type='number'
+               placeholder='Interest rate'
+               value={this.state.rate}
+               onChange={this.handleRateEntry}/>
+        </label>
+        <label>
+          Mortgage Term (Years):
+        <input type='number'
+               placeholder='Length of mortgage'
+               value={this.state.term}
+               onChange={this.handleTermEntry}/>
         </label>
         <input type='submit' className = 'submitButton' value='Calculate My Mortgage Potential'/>
       </form>

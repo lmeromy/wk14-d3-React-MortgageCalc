@@ -8,14 +8,16 @@ const MyMortgage = (props) => {
 
   // assuming 30 year term and 3% interest rate
   const mortgage = props.mortgage;
-  const monthlyPayment = parseFloat(mortgage) * ((0.0025 * Math.pow(1.0025, 360))/(Math.pow(1.0025, 360) - parseFloat(1)));
+  const rate = (props.rate)/100/12;  // annual interest rate divided by 100 to get fraction divided by 12 to get monthly rate
+  const term = (props.term)*12; // number of months of payments in the full term of the mortgage
+  const monthlyPayment = parseFloat(mortgage) * ((rate * Math.pow((1 + rate), term))/(Math.pow((1 + rate), term) - parseFloat(1)));
 
   return(
     <>
       <div className='results'>
         <h3>Congratulations, {props.name}! With your annual salary, you may afford a mortgage for a property up to £{mortgage}. </h3>
-        <p>For a 30-year mortgage term at 3% interest:</p>
-        <h5>Example monthly payment: £{Math.round(monthlyPayment)} </h5>
+        <p>For a {props.term} mortgage term at {props.rate}% interest:</p>
+        <h4>Example monthly payment: £{Math.round(monthlyPayment)} </h4>
       </div>
     </>
   )

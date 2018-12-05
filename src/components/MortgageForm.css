@@ -1,18 +1,31 @@
 .mortgage-form {
   display: grid;
   padding: 20px;
-  margin-left: 20%;
-  margin-left: 20%;
+  /* margin-left: 20%;
+  margin-right: 20%; */
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3, 1fr), auto;
   grid-gap: 30px;
   width: 600px;
+  margin: auto;
+  text-align: center;
+
 
 }
 
 .submitButton {
-  background: gray;
+  background: darkred;
   color: white;
   padding: 10px;
   font-size: 16px;
+  border-radius: 5px;
+}
+
+.mortgage-content {
+  margin-left: 15%;
+  margin-right: 15%;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px;
+
 }
