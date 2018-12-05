@@ -3,8 +3,7 @@ import React from 'react';
 const Header = (props) => {
   return (
     <header>
-      <h2>What kind of mortgage can you afford?</h2>
-      <h4>Enter your details:</h4>
+      <h2>Mortgage Calculator</h2>
     </header>
 
   );

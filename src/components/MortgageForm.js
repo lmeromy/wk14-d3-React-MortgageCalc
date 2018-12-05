@@ -1,4 +1,6 @@
 import React from 'react';
+import './MortgageForm.css';
+
 
 class MortgageForm extends React.Component {
   constructor(props){
@@ -6,6 +8,8 @@ class MortgageForm extends React.Component {
     this.state = {
       name: '',
       annualSalary: '',
+      deposit: ''
+      // NOT YET ADDED OPTION FOR 2 PEOPLE
       // partnerName: '',
       // partnerSalary: null,
       // combinedSalary: null,
@@ -14,6 +18,7 @@ class MortgageForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameEntry = this.handleNameEntry.bind(this);
     this.handleSalaryEntry = this.handleSalaryEntry.bind(this);
+    this.handleDepositEntry = this.handleDepositEntry.bind(this);
   }
 
   handleNameEntry(event){
@@ -24,15 +29,20 @@ class MortgageForm extends React.Component {
     this.setState({annualSalary: parseInt(event.target.value)});
   }
 
+  handleDepositEntry(event){
+    this.setState({deposit: parseInt(event.target.value)});
+  }
+
   handleSubmit(event){
     event.preventDefault();
     const name = this.state.name.trim();
     const salary = this.state.annualSalary;
-    if(!name || !salary) return; // breaks out if field is empty
-    this.props.onFormSubmit({name: name, annualSalary: salary});
+    const deposit = this.state.deposit;
+    if(!name || !salary || !deposit) return; // breaks out if field is empty
+    this.props.onFormSubmit({name: name, annualSalary: salary, deposit: deposit});
 
     // clear the form for the next time:
-    this.setState({name: '', annualSalary: ''});
+    this.setState({name: '', annualSalary: '', deposit: ''});
   }
 
   render(){
@@ -52,12 +62,17 @@ class MortgageForm extends React.Component {
                value={this.state.annualSalary}
                onChange={this.handleSalaryEntry}/>
         </label>
-        <input type='submit' value='Calculate My Mortgage Potential'/>
+        <label>
+          Deposit Available:
+        <input type='number'
+               placeholder='Enter your deposit'
+               value={this.state.deposit}
+               onChange={this.handleDepositEntry}/>
+        </label>
+        <input type='submit' className = 'submitButton' value='Calculate My Mortgage Potential'/>
       </form>
-
     )
   }
-
 
 }
 

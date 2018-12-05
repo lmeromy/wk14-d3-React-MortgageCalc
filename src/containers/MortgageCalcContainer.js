@@ -2,6 +2,7 @@ import React from 'react';
 import MortgageForm from '../components/MortgageForm';
 import MyMortgage from '../components/MyMortgage';
 import Header from '../components/Header';
+// import NumberOfPeople from '../components/NumberOfPeople';
 
 class MortgageCalcContainer extends React.Component {
   constructor(props){
@@ -12,7 +13,6 @@ class MortgageCalcContainer extends React.Component {
     };
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    // this.calculateMyMortgage = this.calculateMyMortgage.bind(this);
   }
 
   componentDidMount(){
@@ -20,9 +20,7 @@ class MortgageCalcContainer extends React.Component {
   }
 
   handleFormSubmit(submittedData){
-    // submittedData.id = Date.now();
-    // this.setState({data: submittedData});
-    const calculatedMortgage = submittedData.annualSalary * 3;
+    const calculatedMortgage = submittedData.deposit + submittedData.annualSalary * 3;
     this.setState({name: submittedData.name, maxPropValue: calculatedMortgage});
 
   }
@@ -32,6 +30,7 @@ class MortgageCalcContainer extends React.Component {
       <>
       <div className="mortgage-container">
         <Header/>
+        {/* <NumberOfPeople/> */}
         <MortgageForm onFormSubmit={this.handleFormSubmit}/>
         <MyMortgage name={this.state.name} mortgage={this.state.maxPropValue}/>
       </div>

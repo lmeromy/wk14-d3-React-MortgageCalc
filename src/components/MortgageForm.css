@@ -1,0 +1,18 @@
+.mortgage-form {
+  display: grid;
+  padding: 20px;
+  margin-left: 20%;
+  margin-left: 20%;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr), auto;
+  grid-gap: 30px;
+  width: 600px;
+
+}
+
+.submitButton {
+  background: gray;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+}
