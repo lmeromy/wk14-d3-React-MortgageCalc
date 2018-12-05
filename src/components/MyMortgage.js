@@ -6,7 +6,7 @@ const MyMortgage = (props) => {
     return null;
   }
 
-  // assuming 30 year term and 3% interest rate
+  // calculations based on the assumption of max property value = annual salary * 3 and information from here: https://www.wikihow.com/Calculate-Mortgage-Payments
   const mortgage = props.mortgage;
   const rate = (props.rate)/100/12;  // annual interest rate divided by 100 to get fraction divided by 12 to get monthly rate
   const term = (props.term)*12; // number of months of payments in the full term of the mortgage
